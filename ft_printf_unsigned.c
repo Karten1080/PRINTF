@@ -6,7 +6,7 @@
 /*   By: asmati <asmati@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 18:21:54 by asmati            #+#    #+#             */
-/*   Updated: 2025/05/22 04:41:08 by asmati           ###   ########.fr       */
+/*   Updated: 2025/05/22 05:36:41 by asmati           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ int	ft_num_len(unsigned int num)
 	return (len);
 }
 
-
-
 int	ft_print_unsigned(unsigned int n)
 {
 	char			*str;
@@ -39,6 +37,7 @@ int	ft_print_unsigned(unsigned int n)
 	free(str);
 	return (i);
 }
+
 char	*ft_uitoa(unsigned int n)
 {
 	unsigned int	i;
@@ -46,14 +45,7 @@ char	*ft_uitoa(unsigned int n)
 	char			*res;
 
 	if (n == 0)
-	{
-		res = malloc(2);
-		if (!res)
-			return (NULL);
-		res[0] = '0';
-		res[1] = '\0';
-		return (res);
-	}
+		return (ft_strdup("0"));
 	tmp = n;
 	i = 0;
 	while (tmp != 0)

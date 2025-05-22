@@ -6,17 +6,11 @@
 /*   By: asmati <asmati@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 19:14:43 by asmati            #+#    #+#             */
-/*   Updated: 2025/05/22 04:37:30 by asmati           ###   ########.fr       */
+/*   Updated: 2025/05/22 05:43:01 by asmati           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-int	ft_printchar(int c)
-{
-	write(1, &c, 1);
-	return (1);
-}
 
 int	ft_printnbr(int n)
 {
@@ -38,10 +32,10 @@ int	ft_printnbr(int n)
 
 int	ft_putnbrpi(long nb)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	if(nb < 0)
+	if (nb < 0)
 	{
 		i += ft_printchar('-');
 		nb = -nb;
@@ -64,18 +58,18 @@ int	ft_putnbr_base(unsigned long nbr, char *base)
 	count = 0;
 	if (!base)
 		return (0);
-	if(nbr == 0)
+	if (nbr == 0)
 		return (write(1, "0x0", 3));
-	while(nbr > 0)
+	while (nbr > 0)
 	{
 		buf[i] = base[nbr % 16];
 		nbr = nbr / 16;
 		i--;
 	}
-	count += write(1,"0x",2);
+	count += write(1, "0x", 2);
 	i++;
-	while(i < 16)
-		count += ft_printchar(buf[i++]); 
+	while (i < 16)
+		count += ft_printchar(buf[i++]);
 	return (count);
 }
 
@@ -83,6 +77,27 @@ int	ft_base16(void *ft_print_pointer)
 {
 	if (ft_print_pointer == NULL)
 		return (write(1, "(nil)", 5));
-	return(ft_putnbr_base((unsigned long)ft_print_pointer, "0123456789abcdef"));
+	return (ft_putnbr_base((unsigned long)ft_print_pointer,
+			"0123456789abcdef"));
 }
 
+char	*ft_strdup(const char *s1)
+{
+	char	*copy;
+	int		i;
+
+	i = 0;
+	while (s1[i])
+		i++;
+	copy = malloc(sizeof(char) * (i + 1));
+	if (!copy)
+		return (NULL);
+	i = 0;
+	while (s1[i])
+	{
+		copy[i] = s1[i];
+		i++;
+	}
+	copy[i] = '\0';
+	return (copy);
+}
